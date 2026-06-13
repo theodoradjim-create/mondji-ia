@@ -1,222 +1,228 @@
-# 🤖 Chatbot IA - Vente d'Ebooks Numériques
+# Mondji IA - Chatbot de Vente d'Ebooks
 
-Application complète de chatbot IA pour accueillir vos visiteurs, comprendre leurs besoins, présenter vos ebooks et collecter les informations des prospects.
+🤖 **Une solution complète et prête à l'emploi pour vendre vos ebooks avec un chatbot IA intelligent.**
 
-## ✅ Fonctionnalités
+## 🚀 Caractéristiques Principales
 
-✅ Chatbot IA conversationnel en français
-✅ Qualification des prospects par questions intelligentes
-✅ Présentation persuasive des ebooks
-✅ Réponse aux objections (prix, confiance, résultats, délai)
-✅ Collecte de données (nom, email, WhatsApp)
-✅ Interface moderne et responsive (React + Tailwind)
-✅ Tableau de bord administrateur
-✅ Statistiques (visiteurs, prospects, ventes)
-✅ Base de données SQLite intégrée
-✅ Authentification administrateur sécurisée
-✅ Historique des conversations
-✅ Configuration flexible des ebooks et prix
+✅ **Chatbot Intelligent** - Conversations naturelles avec gestion des objections
+✅ **Qualification Automatique** - Capture des prospects avec un formulaire fluide
+✅ **Gestion des Ebooks** - Interface admin pour gérer vos produits
+✅ **Tableau de Bord** - Statistiques en temps réel (ventes, prospects, revenus)
+✅ **Responsive Design** - Fonctionne sur tous les appareils
+✅ **Base de Données SQLite** - Stockage local sécurisé
+✅ **API REST** - Facile à intégrer et à étendre
 
-## 📚 Ebooks
-
-1. **Marketing Digital de A à Z** - €29.99
-2. **Faire plus de 100 ventes en moins d'un mois** - €39.99
-
-## 🛠️ Technologies
-
-- **Frontend**: React 18, Tailwind CSS, Axios
-- **Backend**: Node.js, Express.js, SQLite3
-- **Authentification**: JWT, bcryptjs
-- **Base de données**: SQLite
-- **Langue**: Français (par défaut)
-
-## 📁 Structure du Projet
+## 📋 Architecture
 
 ```
 mondji-ia/
-├── client/                    # Frontend React
-│   ├── public/
+├── server/                 # Backend Node.js/Express
+│   ├── config/            # Configuration (DB, JWT)
+│   ├── models/            # Modèles de données
+│   ├── controllers/       # Logique métier
+│   ├── routes/           # Endpoints API
+│   ├── scripts/          # Scripts d'initialisation
+│   └── index.js          # Point d'entrée
+├── client/               # Frontend React
 │   ├── src/
-│   │   ├── components/        # Composants React
-│   │   ├── pages/             # Pages de l'application
-│   │   ├── styles/            # Styles Tailwind
-│   │   ├── utils/             # Fonctions utilitaires
+│   │   ├── components/   # Composants React
 │   │   ├── App.jsx
-│   │   └── index.jsx
-│   ├── package.json
-│   └── tailwind.config.js
-├── server/                    # Backend Express
-│   ├── routes/                # Routes API
-│   ├── controllers/           # Logique métier
-│   ├── models/                # Modèles de données
-│   ├── middleware/            # Middlewares
-│   ├── config/                # Configuration
-│   ├── database.js            # Initialisation BD
-│   └── index.js               # Point d'entrée
-├── database/
-│   └── schema.sql             # Schéma SQLite
-├── .env.example
-├── .gitignore
-├── package.json
-└── README.md
+│   │   ├── index.jsx
+│   │   └── index.css
+│   └── public/
+├── database/             # Schéma SQLite
+├── .env.example         # Variables d'environnement
+└── README.md            # Ce fichier
 ```
 
-## 🚀 Installation
+## 🛠️ Installation
 
 ### Prérequis
-- Node.js v14+
+- Node.js >= 16
 - npm ou yarn
+- SQLite3
 
-### Étapes
+### 1. Cloner le dépôt
 
-1. **Cloner le repository**
 ```bash
 git clone https://github.com/theodoradjim-create/mondji-ia.git
 cd mondji-ia
 ```
 
-2. **Installer les dépendances**
+### 2. Installer les dépendances
+
 ```bash
-npm run install:all
-```
-
-3. **Configurer les variables d'environnement**
-```bash
-cp .env.example .env
-# Éditer .env avec vos paramètres
-```
-
-4. **Initialiser la base de données**
-```bash
-node server/scripts/init-db.js
-```
-
-5. **Démarrer l'application**
-
-Mode développement (avec auto-reload):
-```bash
-npm run dev
-```
-
-Mode production:
-```bash
-npm start
-```
-
-## 📝 Configuration
-
-### Variables d'environnement (.env)
-
-```
 # Backend
+cd server
+npm install
+
+# Frontend
+cd ../client
+npm install
+```
+
+### 3. Configuration
+
+```bash
+# Copier le fichier .env
+cp .env.example .env
+```
+
+**Éditer `.env` et configurer:**
+
+```env
+# Server
 PORT=5000
 NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
 
-# JWT Secret
-JWT_SECRET=votre_secret_jwt_très_sécurisé
-JWT_EXPIRE=7d
-
-# Base de données
+# Database
 DATABASE_PATH=./database/chatbot.db
 
-# Admin
+# JWT
+JWT_SECRET=your-secret-key-change-in-production
+JWT_EXPIRE=7d
+
+# Admin (Première connexion)
 ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=MotDePasseSécurisé123
-
-# Emails (optionnel)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=votre_email@gmail.com
-SMTP_PASS=votre_mot_de_passe_app
-
-# Liens de paiement
-PAYPAL_CLIENT_ID=votre_paypal_id
-STRIPE_SECRET_KEY=votre_stripe_key
+ADMIN_PASSWORD=AdminPassword123!
 ```
 
-## 🎮 Utilisation
+### 4. Initialiser la base de données
 
-### Pour les visiteurs
-1. Accédez à http://localhost:3000
-2. Interagissez avec le chatbot
-3. Entrez vos informations
-4. Cliquez sur le bouton d'achat
+```bash
+cd server
+npm run init-db
+```
 
-### Pour les administrateurs
-1. Accédez à http://localhost:3000/admin
+### 5. Démarrer l'application
+
+**Terminal 1 - Backend:**
+```bash
+cd server
+npm start
+# Le serveur démarre sur http://localhost:5000
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd client
+npm start
+# L'app React démarre sur http://localhost:3000
+```
+
+## 📱 Utilisation
+
+### Pour les Visiteurs
+
+1. Accédez à `http://localhost:3000`
+2. Discutez avec le chatbot
+3. Remplissez le formulaire de prospect
+4. Recevez les ebooks
+
+### Pour les Administrateurs
+
+1. Allez sur `http://localhost:3000/admin/login`
 2. Connectez-vous avec vos identifiants
-3. Consultez les statistiques
-4. Gérez les ebooks et les prix
-5. Visualisez les prospects collectés
+3. Consultez le tableau de bord
+4. Gérez les ebooks et les prospects
 
-## 📊 API Endpoints
+## 🔌 API Endpoints
 
-### Chatbot
+### Authentification
+- `POST /api/auth/login` - Connexion admin
+- `POST /api/auth/init-admin` - Créer le premier admin
+- `GET /api/auth/check-admin` - Vérifier l'existence d'un admin
+
+### Chat
+- `POST /api/chat/session` - Créer une session
 - `POST /api/chat/message` - Envoyer un message
-- `GET /api/chat/history/:sessionId` - Historique de conversation
+- `GET /api/chat/history/:sessionId` - Obtenir l'historique
 
 ### Prospects
 - `POST /api/prospects` - Créer un prospect
-- `GET /api/prospects` - Lister les prospects (Admin)
-- `GET /api/prospects/:id` - Détails d'un prospect
-- `DELETE /api/prospects/:id` - Supprimer un prospect
+- `GET /api/prospects` - Lister tous les prospects (protégé)
+- `GET /api/prospects/:id` - Obtenir un prospect (protégé)
+- `DELETE /api/prospects/:id` - Supprimer un prospect (protégé)
 
 ### Ebooks
-- `GET /api/ebooks` - Lister les ebooks
-- `POST /api/ebooks` - Créer un ebook (Admin)
-- `PUT /api/ebooks/:id` - Modifier un ebook (Admin)
-- `DELETE /api/ebooks/:id` - Supprimer un ebook (Admin)
+- `GET /api/ebooks` - Lister tous les ebooks
+- `GET /api/ebooks/:id` - Obtenir un ebook
+- `POST /api/ebooks` - Créer un ebook (protégé)
+- `PUT /api/ebooks/:id` - Modifier un ebook (protégé)
+- `DELETE /api/ebooks/:id` - Supprimer un ebook (protégé)
 
-### Admin
-- `POST /api/auth/login` - Connexion
-- `GET /api/stats` - Statistiques
-- `GET /api/stats/daily` - Statistiques journalières
+### Statistiques
+- `GET /api/stats` - Obtenir les statistiques (protégé)
+- `GET /api/stats/sales/recent` - Obtenir les ventes récentes (protégé)
 
-## 📱 Responsive Design
+## 🗄️ Structure de la Base de Données
 
-L'application est fully responsive :
-- 📱 Mobile (320px+)
-- 📱 Tablet (768px+)
-- 🖥️ Desktop (1024px+)
+### Tables principales
+
+**admins** - Administrateurs du système
+**sessions** - Sessions de chat des visiteurs
+**messages** - Historique des messages
+**prospects** - Prospects convertis
+**ebooks** - Produits à vendre
+**sales** - Historique des ventes
+**objections** - Réponses aux objections
+**config** - Configuration système
 
 ## 🔐 Sécurité
 
-✅ Authentification JWT sécurisée
-✅ Mots de passe hachés (bcryptjs)
+✅ JWT pour l'authentification
+✅ Hash bcrypt pour les mots de passe
+✅ Validation des entrées
 ✅ CORS configuré
-✅ Protection contre les injections SQL
-✅ Validation des données côté serveur
-✅ Tokens JWT avec expiration
+✅ Variables d'environnement sensibles
 
-## 📈 Statistiques Disponibles
+## 📦 Déploiement
 
-- Nombre total de visiteurs
-- Nombre de prospects collectés
-- Taux de conversion
-- Ebook le plus demandé
-- Objections les plus fréquentes
-- Graphiques de tendances
+### Heroku
 
-## 🚀 Déploiement
-
-### Vercel (Frontend)
 ```bash
-cd client
-npm run build
-vercel deploy
-```
-
-### Heroku (Backend)
-```bash
-heroku create votre-app-name
+heroku create mondji-ia
+heroku config:set JWT_SECRET=your-strong-secret
 git push heroku main
 ```
 
-## 🎉 Commencez maintenant
+### Docker
 
 ```bash
-npm run install:all
-npm run dev
+docker build -t mondji-ia .
+docker run -p 5000:5000 -p 3000:3000 mondji-ia
 ```
 
-Accédez à http://localhost:3000 et commencez à vendre vos ebooks ! 🚀
+## 🤝 Contribution
+
+Les contributions sont bienvenues! Pour proposer des améliorations:
+
+1. Fork le projet
+2. Créez une branche (`git checkout -b feature/amelioration`)
+3. Commit vos changements (`git commit -m 'Ajout de la feature'`)
+4. Push vers la branche (`git push origin feature/amelioration`)
+5. Ouvrez une Pull Request
+
+## 📄 Licence
+
+MIT License - voir LICENSE.md
+
+## 📞 Support
+
+Pour toute question ou problème:
+- 📧 Email: support@mondji.ai
+- 🐛 Issues: https://github.com/theodoradjim-create/mondji-ia/issues
+
+## 🎯 Roadmap
+
+- [ ] Intégration Stripe pour les paiements
+- [ ] WhatsApp API pour les notifications
+- [ ] Analyse avancée des prospects
+- [ ] Multi-langue
+- [ ] SMS marketing
+- [ ] CRM intégré
+
+---
+
+**Créé avec ❤️ par Theodora Djim**
